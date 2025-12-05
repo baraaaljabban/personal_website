@@ -554,33 +554,43 @@ contactForm.addEventListener("submit", async (e) => {
   e.preventDefault();
 
   const formData = new FormData(contactForm);
-  const data = Object.fromEntries(formData);
-
-  // Simulate form submission
   const submitBtn = contactForm.querySelector('button[type="submit"]');
   const originalContent = submitBtn.innerHTML;
 
   submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
   submitBtn.disabled = true;
 
-  // Simulate API call
-  await new Promise((resolve) => setTimeout(resolve, 1500));
+  try {
+    // Send to Formspree
+    const response = await fetch(contactForm.action, {
+      method: "POST",
+      body: formData,
+      headers: {
+        Accept: "application/json",
+      },
+    });
 
-  // Show success message
-  formSuccess.classList.add("show");
+    if (response.ok) {
+      // Show success message
+      formSuccess.classList.add("show");
+      contactForm.reset();
 
-  // Reset form
-  contactForm.reset();
+      // Hide success message after 5 seconds
+      setTimeout(() => {
+        formSuccess.classList.remove("show");
+      }, 5000);
+    } else {
+      alert(
+        "Oops! Something went wrong. Please try again or email me directly."
+      );
+    }
+  } catch (error) {
+    console.error("Form submission error:", error);
+    alert("Oops! Something went wrong. Please try again or email me directly.");
+  }
+
   submitBtn.innerHTML = originalContent;
   submitBtn.disabled = false;
-
-  // Hide success message after 5 seconds
-  setTimeout(() => {
-    formSuccess.classList.remove("show");
-  }, 5000);
-
-  // Log form data (in production, send to server)
-  console.log("Form submitted:", data);
 });
 
 // ==================== SMOOTH SCROLL ====================

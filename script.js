@@ -500,16 +500,8 @@ function loadThemePreference() {
   if (savedTheme) {
     currentTheme = savedTheme;
     updateTheme();
-  } else {
-    // Check system preference
-    if (
-      window.matchMedia &&
-      window.matchMedia("(prefers-color-scheme: light)").matches
-    ) {
-      currentTheme = "light";
-      updateTheme();
-    }
   }
+  // Default is dark mode - no system preference check
 }
 
 // ==================== STATS ANIMATION ====================

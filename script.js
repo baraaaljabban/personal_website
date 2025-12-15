@@ -301,8 +301,8 @@ window.addEventListener("load", () => {
       offset: 100,
     });
 
-    // Animate stats
-    animateStats();
+    // Stats are now static - no animation needed
+    // animateStats();
   }, 1500);
 });
 

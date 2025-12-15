@@ -483,11 +483,9 @@ function updateTheme() {
   // Update icon
   const icon = themeToggle.querySelector("i");
   if (currentTheme === "light") {
-    icon.classList.remove("fa-moon");
-    icon.classList.add("fa-sun");
+    icon.className = "fas fa-sun";
   } else {
-    icon.classList.remove("fa-sun");
-    icon.classList.add("fa-moon");
+    icon.className = "fas fa-moon";
   }
 
   // Save preference

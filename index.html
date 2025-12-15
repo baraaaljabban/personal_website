@@ -215,6 +215,9 @@
     <!-- AOS Animation Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
+    <!-- Three.js for 3D Graphics -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
     <!-- Main Stylesheet -->
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -287,10 +290,11 @@
 
     <!-- Hero Section -->
     <section class="hero" id="hero">
+        <canvas id="hero-canvas" class="hero-canvas"></canvas>
         <div class="hero-bg">
-            <div class="hero-gradient"></div>
-            <div class="hero-grid"></div>
-            <div class="floating-shapes">
+            <div class="hero-gradient" data-parallax="0.3"></div>
+            <div class="hero-grid" data-parallax="0.2"></div>
+            <div class="floating-shapes" data-parallax="0.5">
                 <div class="shape shape-1"></div>
                 <div class="shape shape-2"></div>
                 <div class="shape shape-3"></div>
@@ -309,38 +313,37 @@
                     <span class="greeting" data-en="Hello, I'm" data-ar="مرحباً، أنا">Hello, I'm</span>
                     <span class="name">Baraa Aljabban</span>
                     <span class="title-wrapper">
-                        <span class="title-static" data-en="Senior" data-ar="مطور">Senior</span>
                         <span class="title-dynamic">
-                            <span class="title-word">Flutter Developer</span>
-                            <span class="title-word">Mobile App Expert</span>
-                            <span class="title-word">AI Integration Specialist</span>
+                            <span class="title-word">Mobile App Developer</span>
+                            <span class="title-word">Flutter Expert</span>
+                            <span class="title-word">Full-Stack Solutions</span>
                         </span>
                     </span>
                 </h1>
                 <!-- Hidden SEO text for search engines -->
-                <p class="sr-only">Baraa Aljabban is a Senior Flutter Developer and Mobile Team Lead specializing in cross-platform mobile app development, Flutter migration, AI integration, and performance optimization. Hire a professional Flutter developer for your iOS and Android app projects.</p>
+                <p class="sr-only">Baraa Aljabban is a Mobile App Developer and Team Lead specializing in cross-platform mobile app development, Flutter, AI integration, and full-stack solutions. Hire a professional mobile developer for your iOS and Android app projects.</p>
                 
-                <p class="hero-description" data-en="A mobile app engineer with over seven years of experience building Android native and cross-platform mobile apps. Passionate about clean architecture, test-driven development, and scalable solutions." data-ar="مهندس تطبيقات جوال بخبرة تزيد عن سبع سنوات في بناء تطبيقات Android الأصلية والتطبيقات متعددة المنصات. شغوف بالهندسة النظيفة والتطوير القائم على الاختبار والحلول القابلة للتوسع.">
-                    A mobile app engineer with over seven years of experience building Android native and cross-platform mobile apps. Passionate about clean architecture, test-driven development, and scalable solutions.
+                <p class="hero-description" data-en="7+ years of experience building complete mobile solutions from concept to deployment. I lead a professional team to handle projects end-to-end: mobile apps, backend APIs, databases, and cloud infrastructure. Whether you need just mobile development or a full-stack solution, we deliver with clean architecture and scalable design." data-ar="أكثر من 7 سنوات من الخبرة في بناء حلول الجوال الكاملة من المفهوم إلى النشر. أقود فريقًا محترفًا للتعامل مع المشاريع من الألف إلى الياء: تطبيقات الجوال، APIs الخلفية، قواعد البيانات، والبنية التحتية السحابية. سواء كنت بحاجة فقط إلى تطوير الجوال أو حل متكامل، نقدم بهندسة نظيفة وتصميم قابل للتوسع.">
+                    7+ years of experience building complete mobile solutions from concept to deployment. I lead a professional team to handle projects end-to-end: mobile apps, backend APIs, databases, and cloud infrastructure. Whether you need just mobile development or a full-stack solution, we deliver with clean architecture and scalable design.
                 </p>
                 
                 <!-- Quick Services Overview -->
                 <div class="hero-services">
                     <div class="hero-service-item">
                         <i class="fas fa-mobile-alt"></i>
-                        <span data-en="Build Your App" data-ar="بناء تطبيقك">Build Your App</span>
+                        <span data-en="Mobile Apps" data-ar="تطبيقات الجوال">Mobile Apps</span>
+                    </div>
+                    <div class="hero-service-item">
+                        <i class="fas fa-server"></i>
+                        <span data-en="Backend & APIs" data-ar="الخلفية و APIs">Backend & APIs</span>
+                    </div>
+                    <div class="hero-service-item">
+                        <i class="fas fa-project-diagram"></i>
+                        <span data-en="A to Z Projects" data-ar="مشاريع من الألف إلى الياء">A to Z Projects</span>
                     </div>
                     <div class="hero-service-item">
                         <i class="fas fa-robot"></i>
                         <span data-en="AI Integration" data-ar="تكامل الذكاء الاصطناعي">AI Integration</span>
-                    </div>
-                    <div class="hero-service-item">
-                        <i class="fas fa-sync-alt"></i>
-                        <span data-en="Flutter Migration" data-ar="ترحيل Flutter">Flutter Migration</span>
-                    </div>
-                    <div class="hero-service-item">
-                        <i class="fas fa-comments"></i>
-                        <span data-en="Consultation" data-ar="استشارة">Consultation</span>
                     </div>
                     <div class="hero-service-item">
                         <i class="fas fa-rocket"></i>
@@ -359,8 +362,8 @@
                     </a>
                 </div>
                 
-                <p class="hero-cta-hint" data-en="✨ Free consultation for new projects" data-ar="✨ استشارة مجانية للمشاريع الجديدة">
-                    ✨ Free consultation for new projects
+                <p class="hero-cta-hint" data-en="✨ Complete solutions from mobile apps to backend infrastructure" data-ar="✨ حلول كاملة من تطبيقات الجوال إلى البنية التحتية الخلفية">
+                    ✨ Complete solutions from mobile apps to backend infrastructure
                 </p>
                 
                 <div class="hero-stats">
@@ -411,7 +414,7 @@
                     </div>
                 </div>
                 
-                <div class="tech-orbit">
+                <div class="tech-orbit" data-parallax="0.4">
                     <div class="orbit-ring ring-1">
                         <div class="orbit-icon" style="--delay: 0s;"><i class="fab fa-flutter" title="Flutter"></i></div>
                         <div class="orbit-icon" style="--delay: 2s;"><i class="fab fa-android" title="Android"></i></div>
@@ -435,14 +438,14 @@
     <section class="about" id="about">
         <div class="section-container">
             <div class="section-header" data-aos="fade-up">
-                <span class="section-tag" data-en="Senior Flutter Developer" data-ar="مطور Flutter متقدم">Senior Flutter Developer</span>
-                <h2 class="section-title" data-en="About Baraa Aljabban" data-ar="عن براء الجبان">About Baraa Aljabban</h2>
+                <span class="section-tag" data-en="Get to Know Me" data-ar="تعرف علي">Get to Know Me</span>
+                <h2 class="section-title" data-en="About Me" data-ar="عني">About Me</h2>
             </div>
             
             <div class="about-content">
                 <div class="about-image" data-aos="fade-right" data-aos-duration="800">
                     <div class="image-frame">
-                        <img src="personal.PNG" alt="Baraa Aljabban - Senior Flutter Developer" class="profile-image">
+                        <img src="personal.PNG" alt="Baraa Aljabban - Mobile App Developer" class="profile-image">
                         <div class="image-decoration"></div>
                     </div>
                     <div class="experience-badge">
@@ -452,8 +455,8 @@
                 </div>
                 
                 <div class="about-text" data-aos="fade-left" data-aos-duration="800">
-                    <p class="about-intro" data-en="I'm a Senior Flutter Developer and Mobile Team Lead based in Kuala Lumpur, Malaysia, with a passion for creating exceptional mobile experiences." data-ar="أنا مطور Flutter رفيع المستوى وقائد فريق تطبيقات الجوال مقيم في كوالالمبور، ماليزيا، ولدي شغف لإنشاء تجارب جوال استثنائية.">
-                        I'm a Senior Flutter Developer and Mobile Team Lead based in Kuala Lumpur, Malaysia, with a passion for creating exceptional mobile experiences.
+                    <p class="about-intro" data-en="Mobile App Developer and Team Lead based in Kuala Lumpur, Malaysia, passionate about creating exceptional mobile experiences." data-ar="مطور تطبيقات جوال وقائد فريق في كوالالمبور، ماليزيا، شغوف بإنشاء تجارب جوال استثنائية.">
+                        Mobile App Developer and Team Lead based in Kuala Lumpur, Malaysia, passionate about creating exceptional mobile experiences.
                     </p>
                     
                     <p data-en="Throughout my career, I've developed scalable apps used by millions of users and led teams through the transition from native codebases to Flutter. I specialize in clean architecture, MVVM patterns, and test-driven development to ensure robust, maintainable applications." data-ar="طوال مسيرتي المهنية، قمت بتطوير تطبيقات قابلة للتوسع يستخدمها ملايين المستخدمين وقدت فرقًا خلال الانتقال من الأكواد الأصلية إلى Flutter. أتخصص في الهندسة النظيفة وأنماط MVVM والتطوير القائم على الاختبار لضمان تطبيقات قوية وقابلة للصيانة.">
@@ -462,6 +465,10 @@
                     
                     <p data-en="I have extensive experience mentoring developers and leading cross-functional teams to deliver high-quality mobile solutions on time and within budget." data-ar="لدي خبرة واسعة في إرشاد المطورين وقيادة الفرق متعددة الوظائف لتقديم حلول جوال عالية الجودة في الوقت المحدد وضمن الميزانية.">
                         I have extensive experience mentoring developers and leading cross-functional teams to deliver high-quality mobile solutions on time and within budget.
+                    </p>
+                    
+                    <p data-en="With a trusted network of professionals, I can handle complete projects from A to Z, including server-side development, API integration, database design, and deployment. Whether you need just mobile development or a full-stack solution, I have the team and expertise to deliver." data-ar="مع شبكة موثوقة من المحترفين، يمكنني التعامل مع المشاريع الكاملة من الألف إلى الياء، بما في ذلك تطوير الخادم وتكامل API وتصميم قاعدة البيانات والنشر. سواء كنت بحاجة إلى تطوير الهاتف المحمول فقط أو حل متكامل، لدي الفريق والخبرة لتقديم ذلك.">
+                        With a trusted network of professionals, I can handle complete projects from A to Z, including server-side development, API integration, database design, and deployment. Whether you need just mobile development or a full-stack solution, I have the team and expertise to deliver.
                     </p>
                     
                     <div class="skills-grid">
@@ -525,10 +532,10 @@
     <section class="services" id="services">
         <div class="section-container">
             <div class="section-header" data-aos="fade-up">
-                <span class="section-tag" data-en="Mobile App Development Services" data-ar="خدمات تطوير التطبيقات">Mobile App Development Services</span>
-                <h2 class="section-title" data-en="Flutter Development & App Services" data-ar="خدمات تطوير Flutter والتطبيقات">Flutter Development & App Services</h2>
-                <p class="section-subtitle" data-en="Professional mobile app development, Flutter migration, AI integration, and performance optimization services for iOS and Android" data-ar="خدمات تطوير تطبيقات الجوال الاحترافية وترحيل Flutter وتكامل الذكاء الاصطناعي وتحسين الأداء لـ iOS و Android">
-                    Professional mobile app development, Flutter migration, AI integration, and performance optimization services for iOS and Android
+                <span class="section-tag" data-en="What I Offer" data-ar="ما أقدمه">What I Offer</span>
+                <h2 class="section-title" data-en="Services" data-ar="الخدمات">Services</h2>
+                <p class="section-subtitle" data-en="From mobile apps to complete full-stack solutions - I handle your project from A to Z with a professional team" data-ar="من تطبيقات الجوال إلى الحلول المتكاملة - أتعامل مع مشروعك من الألف إلى الياء مع فريق محترف">
+                    From mobile apps to complete full-stack solutions - I handle your project from A to Z with a professional team
                 </p>
             </div>
             
@@ -610,6 +617,23 @@
                         <li><i class="fas fa-check"></i> <span data-en="Smart Recommendations" data-ar="توصيات ذكية">Smart Recommendations</span></li>
                     </ul>
                 </div>
+                
+                <div class="service-card featured" data-aos="fade-up" data-aos-delay="500">
+                    <div class="service-badge" data-en="Complete Solution" data-ar="حل كامل">Complete Solution</div>
+                    <div class="service-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <h3 class="service-title" data-en="End-to-End Project Development" data-ar="تطوير المشروع من الألف إلى الياء">End-to-End Project Development</h3>
+                    <p class="service-desc" data-en="From concept to deployment, I lead a professional team to handle your complete project. Mobile apps, backend APIs, databases, cloud deployment - we've got you covered." data-ar="من المفهوم إلى النشر، أقود فريقًا محترفًا للتعامل مع مشروعك الكامل. تطبيقات الجوال، APIs الخلفية، قواعد البيانات، النشر السحابي - نحن نغطي كل شيء.">
+                        From concept to deployment, I lead a professional team to handle your complete project. Mobile apps, backend APIs, databases, cloud deployment - we've got you covered.
+                    </p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> <span data-en="Full-Stack Development" data-ar="تطوير متكامل">Full-Stack Development</span></li>
+                        <li><i class="fas fa-check"></i> <span data-en="Backend & API Design" data-ar="تصميم الخلفية و API">Backend & API Design</span></li>
+                        <li><i class="fas fa-check"></i> <span data-en="Database Architecture" data-ar="هندسة قاعدة البيانات">Database Architecture</span></li>
+                        <li><i class="fas fa-check"></i> <span data-en="Cloud Deployment" data-ar="النشر السحابي">Cloud Deployment</span></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </section>
@@ -618,10 +642,10 @@
     <section class="projects" id="projects">
         <div class="section-container">
             <div class="section-header" data-aos="fade-up">
-                <span class="section-tag" data-en="Mobile App Portfolio" data-ar="محفظة التطبيقات">Mobile App Portfolio</span>
-                <h2 class="section-title" data-en="Flutter & Mobile App Projects" data-ar="مشاريع Flutter والتطبيقات">Flutter & Mobile App Projects</h2>
-                <p class="section-subtitle" data-en="Successful mobile applications built with Flutter, serving millions of users across iOS and Android platforms" data-ar="تطبيقات جوال ناجحة مبنية بـ Flutter، تخدم ملايين المستخدمين عبر منصات iOS و Android">
-                    Successful mobile applications built with Flutter, serving millions of users across iOS and Android platforms
+                <span class="section-tag" data-en="My Work" data-ar="أعمالي">My Work</span>
+                <h2 class="section-title" data-en="Featured Projects" data-ar="المشاريع المميزة">Featured Projects</h2>
+                <p class="section-subtitle" data-en="A showcase of impactful mobile applications serving millions of users" data-ar="عرض لتطبيقات الجوال المؤثرة التي تخدم ملايين المستخدمين">
+                    A showcase of impactful mobile applications serving millions of users
                 </p>
             </div>
             
@@ -930,6 +954,20 @@
                     </div>
                 </div>
             </div>
+            
+            <!-- Portfolio Note -->
+            <div class="portfolio-note" data-aos="fade-up" data-aos-delay="400">
+                <div class="note-content">
+                    <i class="fas fa-plus-circle"></i>
+                    <p data-en="These are just highlights of my portfolio. I've worked on 20+ projects including e-commerce platforms, healthcare apps, fintech solutions, and enterprise tools. Each project has been an opportunity to deliver exceptional mobile experiences and solve real-world problems." data-ar="هذه مجرد أبرز أعمالي. لقد عملت على أكثر من 20 مشروعًا بما في ذلك منصات التجارة الإلكترونية وتطبيقات الرعاية الصحية وحلول التكنولوجيا المالية وأدوات المؤسسات. كان كل مشروع فرصة لتقديم تجارب جوال استثنائية وحل مشاكل حقيقية.">
+                        These are just highlights of my portfolio. I've worked on 20+ projects including e-commerce platforms, healthcare apps, fintech solutions, and enterprise tools. Each project has been an opportunity to deliver exceptional mobile experiences and solve real-world problems.
+                    </p>
+                    <a href="#contact" class="btn btn-secondary">
+                        <span data-en="Discuss Your Project" data-ar="ناقش مشروعك">Discuss Your Project</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -967,10 +1005,10 @@
     <section class="contact" id="contact">
         <div class="section-container">
             <div class="section-header" data-aos="fade-up">
-                <span class="section-tag" data-en="Hire a Flutter Developer" data-ar="وظّف مطور Flutter">Hire a Flutter Developer</span>
-                <h2 class="section-title" data-en="Start Your Mobile App Project" data-ar="ابدأ مشروع تطبيقك">Start Your Mobile App Project</h2>
-                <p class="section-subtitle" data-en="Ready to build your mobile app? Get a free consultation for your Flutter development, app migration, or AI integration project." data-ar="مستعد لبناء تطبيقك؟ احصل على استشارة مجانية لمشروع تطوير Flutter أو ترحيل التطبيق أو تكامل الذكاء الاصطناعي.">
-                    Ready to build your mobile app? Get a free consultation for your Flutter development, app migration, or AI integration project.
+                <span class="section-tag" data-en="Let's Work Together" data-ar="لنعمل معاً">Let's Work Together</span>
+                <h2 class="section-title" data-en="Get In Touch" data-ar="تواصل معي">Get In Touch</h2>
+                <p class="section-subtitle" data-en="Ready to bring your mobile app idea to life? Let's discuss your project and find the best solution" data-ar="مستعد لإحياء فكرة تطبيقك؟ دعنا نناقش مشروعك ونجد أفضل حل">
+                    Ready to bring your mobile app idea to life? Let's discuss your project and find the best solution
                 </p>
             </div>
             
@@ -1168,6 +1206,7 @@
     <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="script.js"></script>
+    <script src="3d-effects.js"></script>
 </body>
 </html>
 

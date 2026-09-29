@@ -1,0 +1,17 @@
+{
+    "name": "Baraa Aljabban — Senior Flutter Developer",
+    "short_name": "Baraa Aljabban",
+    "description": "Portfolio of Baraa Aljabban — Senior Flutter Developer & Mobile Team Lead in Kuala Lumpur, Malaysia.",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#05070d",
+    "theme_color": "#05070d",
+    "icons": [
+        {
+            "src": "personal.PNG",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any"
+        }
+    ]
+}
